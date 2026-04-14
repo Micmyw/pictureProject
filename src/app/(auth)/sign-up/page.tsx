@@ -29,7 +29,6 @@ export default function SignUpPage() {
       if (redirectTo !== "/app") {
         confirmUrl.searchParams.set("redirectTo", redirectTo);
       }
-      confirmUrl.searchParams.set("confirmed", "1");
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -47,6 +46,7 @@ export default function SignUpPage() {
       }
 
       if (!data.session) {
+        setPassword("");
         setSuccess(
           "Account created. Please check your email to confirm your address before signing in."
         );
@@ -54,7 +54,6 @@ export default function SignUpPage() {
       }
 
       router.push(redirectTo);
-      router.refresh();
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -138,7 +137,7 @@ export default function SignUpPage() {
                   : `/sign-in?redirectTo=${encodeURIComponent(redirectTo)}`
               }
             >
-              Return to sign in
+              Go to sign in
             </Link>
             .
           </p>
