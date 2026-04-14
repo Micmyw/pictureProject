@@ -71,20 +71,23 @@ export default async function DashboardPage() {
             </p>
           </Link>
 
-          <article className="rounded-[2rem] border border-[var(--border)] bg-[#efe3d0] p-6">
+          <Link
+            href="/app/background"
+            className="rounded-[2rem] border border-[var(--border)] bg-[#efe3d0] p-6 transition hover:-translate-y-0.5 hover:bg-[#f4ead8]"
+          >
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-2xl font-semibold text-[#2b2119]">
                 Remove backgrounds
               </h2>
               <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#7b5d42]">
-                Next up
+                Live now
               </span>
             </div>
             <p className="mt-4 text-neutral-700">
               Clean up supplier photography fast, then ship transparent cutouts
               and marketplace-safe exports.
             </p>
-          </article>
+          </Link>
         </div>
 
         <article className="rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-6">
@@ -97,8 +100,8 @@ export default async function DashboardPage() {
               Confirm your seller identity and workspace details in settings.
             </li>
             <li className="rounded-2xl border border-[var(--border)] bg-white/70 px-4 py-3">
-              Creative tools are staged next, so this dashboard avoids dead-end
-              links for now.
+              Generation and background cleanup are live now, with library and
+              exports next.
             </li>
           </ul>
         </article>

@@ -13,7 +13,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { href: "/app", label: "Dashboard", status: "available" },
   { href: "/app/generate", label: "Generate", status: "available" },
-  { label: "Background", status: "coming-soon" },
+  { href: "/app/background", label: "Background", status: "available" },
   { label: "Library", status: "coming-soon" },
   { href: "/app/credits", label: "Credits", status: "available" },
   { href: "/app/settings", label: "Settings", status: "available" }
