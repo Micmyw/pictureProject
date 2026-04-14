@@ -14,7 +14,7 @@ const navItems: NavItem[] = [
   { href: "/app", label: "Dashboard", status: "available" },
   { href: "/app/generate", label: "Generate", status: "available" },
   { href: "/app/background", label: "Background", status: "available" },
-  { label: "Library", status: "coming-soon" },
+  { href: "/app/library", label: "Library", status: "available" },
   { href: "/app/credits", label: "Credits", status: "available" },
   { href: "/app/settings", label: "Settings", status: "available" }
 ];

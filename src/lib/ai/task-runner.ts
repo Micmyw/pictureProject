@@ -1,5 +1,6 @@
 import "server-only";
 
+import { createAssetRecord } from "@/lib/assets/asset-service";
 import { getProvider } from "@/lib/ai/provider-registry";
 import type {
   BackgroundRemovalInput,
@@ -18,6 +19,10 @@ type StoredTask = {
   task_type: TaskType;
   workspace_id: string;
 };
+
+export function getAssetKindForTaskType(taskType: TaskType) {
+  return taskType === "image_generation" ? "generated" : "processed";
+}
 
 function getFailureMessage(error: unknown) {
   if (error instanceof Error) {
@@ -77,6 +82,19 @@ export async function runTaskById(taskId: string) {
 
   try {
     const result = await runProviderTask(task as StoredTask);
+
+    for (const outputUrl of result.outputUrls) {
+      await createAssetRecord({
+        workspaceId: task.workspace_id,
+        taskId: task.id,
+        uploadedBy: task.created_by,
+        kind: getAssetKindForTaskType(task.task_type),
+        storageBucket: "external",
+        storagePath: outputUrl,
+        publicUrl: outputUrl,
+        mimeType: "image/png"
+      });
+    }
 
     await chargeCreditsForTask({
       workspaceId: task.workspace_id,
