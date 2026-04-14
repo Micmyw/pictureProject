@@ -12,7 +12,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: "/app", label: "Dashboard", status: "available" },
-  { label: "Generate", status: "coming-soon" },
+  { href: "/app/generate", label: "Generate", status: "available" },
   { label: "Background", status: "coming-soon" },
   { label: "Library", status: "coming-soon" },
   { href: "/app/credits", label: "Credits", status: "available" },

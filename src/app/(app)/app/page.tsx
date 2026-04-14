@@ -55,18 +55,21 @@ export default async function DashboardPage() {
 
       <section className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
         <div className="grid gap-5 md:grid-cols-2">
-          <article className="rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-6">
+          <Link
+            href="/app/generate"
+            className="rounded-[2rem] border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:-translate-y-0.5 hover:bg-white"
+          >
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-2xl font-semibold">Generate product visuals</h2>
               <span className="rounded-full bg-[#efe3d0] px-3 py-1 text-xs font-medium text-[#7b5d42]">
-                Next up
+                Live now
               </span>
             </div>
             <p className="mt-4 text-neutral-700">
               Prompt lifestyle scenes, clean studio shots, and listing-ready
               hero images from one workflow.
             </p>
-          </article>
+          </Link>
 
           <article className="rounded-[2rem] border border-[var(--border)] bg-[#efe3d0] p-6">
             <div className="flex items-center justify-between gap-3">
