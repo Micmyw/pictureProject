@@ -1,13 +1,6 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-
-type RecentTask = {
-  created_at: string;
-  id: string;
-  status: string;
-  task_type: string;
-};
+import { listRecentTasksForUser } from "@/lib/tasks/task-service";
 
 function formatTaskLabel(value: string) {
   return value
@@ -18,20 +11,13 @@ function formatTaskLabel(value: string) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  const supabase = await createSupabaseServerClient();
-  const { data: tasks } = await supabase
-    .from("ai_tasks")
-    .select("id, task_type, status, created_at")
-    .eq("created_by", user.id)
-    .order("created_at", { ascending: false })
-    .limit(6);
+  const recentTasks = await listRecentTasksForUser(user.id, 6);
 
   const firstName =
     (typeof user.user_metadata?.full_name === "string" &&
       user.user_metadata.full_name.split(" ")[0]) ||
     user.email?.split("@")[0] ||
     "there";
-  const recentTasks = (tasks ?? []) as RecentTask[];
 
   return (
     <div className="space-y-8">

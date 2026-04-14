@@ -1,26 +1,7 @@
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-
-async function getCreditBalanceForUser(userId: string) {
-  const supabase = await createSupabaseServerClient();
-  const { data: userRow } = await supabase
-    .from("users")
-    .select("workspace_id")
-    .eq("id", userId)
-    .maybeSingle();
-
-  if (!userRow?.workspace_id) {
-    return 0;
-  }
-
-  const { data } = await supabase.rpc("current_credit_balance", {
-    target_workspace_id: userRow.workspace_id
-  });
-
-  return data ?? 0;
-}
+import { getCreditBalanceForUser } from "@/lib/credits/credits-service";
 
 export default async function AppLayout({
   children
