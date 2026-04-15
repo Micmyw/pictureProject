@@ -1,8 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-test("generate page loads for authenticated users", async ({ page }) => {
+test("generate page redirects unauthenticated users to sign in", async ({ page }) => {
   await page.goto("/app/generate");
-  await expect(
-    page.getByRole("heading", { name: "Generate image" })
-  ).toBeVisible();
+  await expect(page).toHaveURL(/\/sign-in/);
+  await expect(page.getByRole("heading", { name: "Sign in" })).toBeVisible();
 });
